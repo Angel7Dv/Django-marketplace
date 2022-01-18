@@ -1,12 +1,14 @@
 {% extends '../base.html' %}  <!-- trae a main como padre -->
 
-{% block title %} Home{% endblock %}
+{% block title %}Login{% endblock %}
 
 
 {% block content %}  
 
+<!-- bloque de contenido a utilizar -->
+<h1>Nuevo usuario</h1>
 
-<h1 class="title">Nuevo usuario</h1>
+<h1 class="title">Login</h1>
 
 <form method="post" class="form-group" action=".">
     {% csrf_token %}
@@ -15,7 +17,7 @@
 
     <div class="field">
         <div class="control">
-            <button type="submit" class="button is-dark is-uppercase">Sign up</button>
+            <button type="submit" class="button is-dark is-uppercase">Login</button>
         </div>
     </div>
     {{form.errors}}
@@ -24,8 +26,6 @@
 <hr>
 
 <h2 class="subtitle">Already have an account?</h2>
-<a class="btn btn-primary" href="{% url 'login' %}">Login</a>
-
 
 
 {% endblock content %} 

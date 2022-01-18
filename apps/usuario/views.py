@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from django.contrib.auth import login                   #Add this for user
-from .form import CreateUserForm
-from django.contrib import messages
+from django.contrib.auth import login  # Register User and login
+from .form import CreateUserForm       # Register User
+from .models import Posteador          # Register User
 
-from .models import Posteador                             #Add this for user
+from django.contrib.auth.decorators import login_required   # LOGIN
+
 
 def register(request):		
     if request.method == 'POST':
@@ -14,15 +15,20 @@ def register(request):
             user = form.save()          
             login(request, user)    
             username = form.cleaned_data.get('username')
-            #ASEGURAR QUE COINCIDA CON LOS CAMPOS DEL MODEL
-            Posteador.objects.create(nombre=username, created_by=user)         
+            Posteador.objects.create(nombre=username, created_by=user)   #[1]Variable para ser usada en el login    
             return redirect('home')
     else:
         form = CreateUserForm()
-    context = {'form':form}
-    return render(request, 'usuarios/register.html', context)
+    ctx = {'form':form}
+    return render(request, 'usuarios/register.html', ctx)
 
 
+@login_required
+def userPanel(request): 
+    #print("=========",request.user.posteador)
+    poster = request.user.posteador  # Variable del model Posteador create_by
+    ctx = {
+        "usuario": poster
+    }
 
-def usuario(request):
-    return request(render, 'usuarios,usuario.html')
+    return render(request, 'usuarios/userPanel.html', ctx)

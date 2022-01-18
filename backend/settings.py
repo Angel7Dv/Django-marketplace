@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-from lib2to3.pytree import Base
 from pathlib import Path
 import os
 import sys
@@ -43,6 +42,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 # Application definition
 
