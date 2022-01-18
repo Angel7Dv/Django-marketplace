@@ -7,7 +7,9 @@ class Posteador(models.Model):
     nombre = models.CharField(max_length=255)           # Nombre de usuario
     create_at = models.DateTimeField(auto_now_add=True) # Fecha de registro
     ## Designa que administrador creo dicho elemento Usuario
-    create_by = models.OneToOneField(User, related_name='usuario', on_delete=models.CASCADE) 
+                            # corregir related_name con la migracion  #python manage.py migrate usuario zero
+    create_by = models.OneToOneField(User, related_name='posteador', on_delete=models.CASCADE) 
+
 
     class Meta:
         ordering = ['nombre']
