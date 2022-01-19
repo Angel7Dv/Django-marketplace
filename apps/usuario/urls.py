@@ -1,10 +1,11 @@
 from django.urls import path
-from .views import userPanel, register
+from .views import userPanel, register, add_product
 from django.contrib.auth import views as auth_views
  
 urlpatterns = [
     path('', register, name='register' ),
     path('panel', userPanel, name='userPanel'),
+    path('add-product/', add_product, name='add_product'),
 
 
     # Login y logout

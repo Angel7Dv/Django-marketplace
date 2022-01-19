@@ -1,0 +1,25 @@
+{% extends '../base.html' %}  <!-- trae a main como padre -->
+
+{% block title %} Home{% endblock %}
+
+
+{% block content %}  
+
+
+<h1 class="title">Nuevo usuario</h1>
+
+<form method="post" class="form-group" action=".">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <div class="field">
+        <div class="control">
+            <button type="submit" class="button is-dark is-uppercase">Sign up</button>
+        </div>
+    </div>
+    {{form.errors}}
+</form>
+
+
+{% endblock content %} 

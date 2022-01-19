@@ -1,0 +1,58 @@
+{% extends '../base.html' %}  <!-- trae a main como padre -->
+
+{% block title %} Home{% endblock %}
+
+
+{% block content %}  
+
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{{ product.get_thumbnail }}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">{{ product.title }}</h1>
+
+        <p class="lead">
+            {{ product.description }}
+        </p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <h1>Similares : </h1>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+       
+                    {% for i in similar_products %}
+                    <div class="col-3">
+                        <div class="card shadow-sm">            
+                            <img class="d-flex" width="50%" height="112"  src="{{ i.get_thumbnail }}">          
+                        <div class="card-body">
+                            <h5>{{ i.title }}</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted"> {{ i.price }}</small>
+                            <div class="btn-group">
+                                <a href="{% url 'detail_product' i.category.slug i.slug %}" class="btn btn-sm btn-outline-secondary">View</a>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+      </div>
+    </div>
+</div>
+
+
+{% endblock content %} 
