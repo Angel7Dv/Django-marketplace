@@ -1,6 +1,6 @@
 {% extends '../base.html' %}  <!-- trae a main como padre -->
 
-{% block title %} Home{% endblock %}
+{% block title %}  busqueda: {{ query }} {% endblock %}
 
 
 {% block content %}  
@@ -8,9 +8,10 @@
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Lorem ipsum</h1>
+        <h1 class="fw-light">
+          Termino de busqueda {{ query }}
+        </h1>
         <p class="lead text-muted">
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur earum ducimus a numquam nemo molestias exercitationem dolorem voluptatum, blanditiis quis molestiae adipisci iste neque. Aliquid veniam velit deleniti neque suscipit?
 
           </p>
         <p>
@@ -29,18 +30,13 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
        
 
-        {% for i in products %}
+        {% for i in products.all %}
         <div class="col">
             <div class="card shadow-sm">            
-                <img class="d-flex " width="100%" height="225"  src="{{ i.get_thumbnail }}">          
+                <img class="d-flex" width="100%" height="225"  src="{{ i.get_thumbnail }}">          
             <div class="card-body">
               <h5>{{ i.title }}</h5>
-
-              <div class="d-flex justify-content-between align-items-center">
-                <p class="card-text"> {{ i.description|truncatewords:7 }}   </p>
-
-                <a href="{% url 'category' i.category.slug %}"> {{ i.category }}</a>
-              </div>
+              <p class="card-text">Description: <br>   {{ i.description }}   </p>
 
               <div class="d-flex justify-content-between align-items-center">
                 <small class="text-muted"> {{ i.price }}</small>
